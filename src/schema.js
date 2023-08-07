@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server-express';
+import { gql } from 'apollo-server-express'
 
 export const typeDefs = gql`
   scalar Date
@@ -14,4 +14,4 @@ export const typeDefs = gql`
     Books: [Book]
     Book(id: ID!): Book
   }
-`;
+`

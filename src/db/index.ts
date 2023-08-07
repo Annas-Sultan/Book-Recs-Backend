@@ -1,25 +1,25 @@
-import { Client } from 'pg'
+import { Client, type QueryResult } from 'pg'
 
 import { HOST, PORT, USER, PASSWORD, DB } from '../config/db.config.js'
 const client = new Client({
-    host: HOST,
-    port: Number(PORT),
-    database: DB,
-    user: USER,
-    password: PASSWORD,
-    ssl: {
-        rejectUnauthorized: false
-    }
+  host: HOST,
+  port: Number(PORT),
+  database: DB,
+  user: USER,
+  password: PASSWORD,
+  ssl: {
+    rejectUnauthorized: false
+  }
 })
-const Setup = async () => {
-    try {
-        await client.connect()
-    } catch (err) {
-        console.error(err)
-    }
+const Setup = async (): Promise<void> => {
+  try {
+    await client.connect()
+  } catch (err) {
+    console.error(err)
+  }
 }
-Setup()
+void Setup()
 
-export const query = (text: string, params?: any[]) => {
-    return client.query(text, params)
+export const query = async (text: string, params?: any[]): Promise<QueryResult<any>> => {
+  return await client.query(text, params)
 }

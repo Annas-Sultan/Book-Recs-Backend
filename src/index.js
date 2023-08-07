@@ -1,20 +1,20 @@
 import 'dotenv/config'
-import { ApolloServer, gql } from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express'
 import {
   ApolloServerPluginDrainHttpServer,
   ApolloServerPluginLandingPageLocalDefault
-} from 'apollo-server-core';
-import express from 'express';
-import http from 'http';
+} from 'apollo-server-core'
+import express from 'express'
+import http from 'http'
 import cors from 'cors'
-import { resolvers } from './resolvers';
-import { typeDefs } from './schema';
+import { resolvers } from './resolvers'
+import { typeDefs } from './schema'
 import rateLimit from 'express-rate-limit'
-import api from './api';
+import api from './api'
 
-async function startApolloServer(typeDefs, resolvers) {
-  const app = express();
-  const httpServer = http.createServer(app);
+async function startApolloServer (typeDefs, resolvers) {
+  const app = express()
+  const httpServer = http.createServer(app)
   const server = new ApolloServer({
     typeDefs,
     resolvers,
@@ -25,18 +25,17 @@ async function startApolloServer(typeDefs, resolvers) {
       ApolloServerPluginLandingPageLocalDefault({ embed: true })
     ],
     formatError: (error) => {
-      console.error(error);
-      return error;
+      console.error(error)
+      return error
     }
-  });
+  })
 
-  await server.start();
+  await server.start()
 
-  server.applyMiddleware({ app });
+  server.applyMiddleware({ app })
 
   app.use(cors())
   app.use(express.json())
-
 
   const errorHandler = (error, _, response, __) => {
     // Error handling middleware functionality
@@ -49,13 +48,13 @@ async function startApolloServer(typeDefs, resolvers) {
 
   const limiter = rateLimit({
     windowMs: 1 * 60 * 1000, // 1 minute
-    max: 20,
-  });
+    max: 20
+  })
   // Apply rate limiter to all requests
-  app.use(limiter);
-  api(app);
+  app.use(limiter)
+  api(app)
 
-  await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
+  await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve))
 }
 
-startApolloServer(typeDefs, resolvers);
+startApolloServer(typeDefs, resolvers)
