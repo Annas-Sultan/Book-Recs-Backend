@@ -7,10 +7,10 @@ import {
 import express from 'express'
 import http from 'http'
 import cors from 'cors'
-import { resolvers } from './resolvers'
-import { typeDefs } from './schema'
+import { resolvers } from './resolvers.js'
+import { typeDefs } from './schema.js'
 import rateLimit from 'express-rate-limit'
-import api from './api'
+import api from './api/index.js'
 
 async function startApolloServer (typeDefs, resolvers) {
   const app = express()
