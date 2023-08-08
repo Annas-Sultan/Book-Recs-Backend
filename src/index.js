@@ -54,7 +54,7 @@ async function startApolloServer (typeDefs, resolvers) {
   app.use(limiter)
   api(app)
 
-  await new Promise((resolve) => httpServer.listen(process.env.PORT || 4000, resolve))
+  await new Promise((resolve) => httpServer.listen(process.env.PORT || 4000, '0.0.0.0', resolve))
 }
 
 startApolloServer(typeDefs, resolvers)
