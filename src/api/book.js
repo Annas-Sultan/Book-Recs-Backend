@@ -1,5 +1,5 @@
 import * as express from 'express'
-import { getBook, getBookIDs } from '../db/dbUtils.ts'
+import { getBook, getBookIDs } from '../db/dbUtils.js'
 
 const router = express.Router()
 
