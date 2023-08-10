@@ -15,7 +15,7 @@ const client = new Client({
 try {
   await client.connect()
 } catch (err) {
-  console.error(err)
+  console.error('DD Connection error', err)
 }
 
 export const query = async (text, params) => {

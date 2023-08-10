@@ -12,6 +12,7 @@ import cors from 'cors'
 import pkg from 'body-parser'
 const { json } = pkg
 
+const port = process.env.PORT || 4000
 const app = express()
 const httpServer = http.createServer(app)
 const server = new ApolloServer({
@@ -47,4 +48,5 @@ app.use(errorHandler)
 
 api(app)
 
-await new Promise((resolve) => httpServer.listen({ port: process.env.PORT || 4000 }, resolve))
+await new Promise((resolve) => httpServer.listen({ port }, resolve))
+console.log(`App running on: ${port}`)
