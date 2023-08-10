@@ -1,5 +1,5 @@
 import { GraphQLScalarType, Kind } from 'graphql'
-import { getBook, getAllBooks } from './db/dbUtils'
+import { getBook, getAllBooks } from './db/dbUtils.js'
 
 const dateScalar = new GraphQLScalarType({
   name: 'Date',

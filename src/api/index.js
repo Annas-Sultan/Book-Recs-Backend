@@ -1,5 +1,5 @@
-import book from './book'
-import recommendation from './recommendation'
+import book from './book.js'
+import recommendation from './recommendation.js'
 
 export default function api (server) {
   server.use('/api/v1/book', book)

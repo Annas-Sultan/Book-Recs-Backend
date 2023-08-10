@@ -1,4 +1,4 @@
-import { query } from './index'
+import { query } from './index.js'
 
 export const getBook = async (bookId: string): Promise<any[]> => {
   const res = await query('SELECT * FROM recommendations WHERE id = $1', [bookId])
