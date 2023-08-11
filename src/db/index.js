@@ -14,10 +14,12 @@ const client = new Client({
 })
 try {
   await client.connect()
+  console.log('DB Client connected')
 } catch (err) {
   console.error('DD Connection error', err)
 }
 
 export const query = async (text, params) => {
+  console.log('running query', text, params)
   return await client.query(text, params)
 }
