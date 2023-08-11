@@ -12,14 +12,9 @@ const client = new Client({
     rejectUnauthorized: false
   }
 })
-try {
-  await client.connect()
-  console.log('DB Client connected')
-} catch (err) {
-  console.error('DD Connection error', err)
-}
+
+await client.connect()
 
 export const query = async (text, params) => {
-  console.log('running query', text, params)
   return await client.query(text, params)
 }
