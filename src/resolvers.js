@@ -1,5 +1,5 @@
 import { GraphQLScalarType, Kind } from 'graphql'
-import { getBook, getAllBooks } from './db/dbUtils.js'
+import { getBook, getAllBooks, getComments, saveComment } from './db/dbUtils.js'
 
 const dateScalar = new GraphQLScalarType({
   name: 'Date',
@@ -30,6 +30,10 @@ export const resolvers = {
   Date: dateScalar,
   Query: {
     Books: () => getAllBooks(),
-    Book: (parent, args, contextValue, info) => getBook(args.id)
+    Book: (_, { id }) => getBook(id),
+    Comments: (_, { bookId }) => getComments(bookId)
+  },
+  Mutation: {
+    postComment: (_, { input }) => saveComment(input)
   }
 }
