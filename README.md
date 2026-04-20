@@ -9,5 +9,5 @@ Check-out the accompanying [frontend project](https://github.com/Annas-Sultan/Bo
 ## Stack
 - Express
 - Apollo Server 4
-- RDS (Postgres)
+- Postgres
 - Deployed on Railway
